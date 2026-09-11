@@ -507,16 +507,40 @@ window.__TOPO_DATA__ = {"type":"Topology","objects":{"countries":{"type":"Geomet
     // rows
     CONTEXTS.forEach((ctx, i) => {
       const yMid = rowH*i + rowH/2;
-      // row label
-      g.append("text")
-        .attr("x", -14)
-        .attr("y", yMid + 4)
+     // row label — wraps onto extra lines if it doesn't fit the left margin
+      const labelMaxWidth = margin.left - 14 - 4;
+      const labelText = g.append("text")
         .attr("text-anchor", "end")
         .attr("font-size", "13px")
         .attr("font-family", "Source Serif 4, Georgia, serif")
         .attr("font-weight", 600)
-        .attr("fill", "#1b1f24")
-        .text(ctx.label);
+        .attr("fill", "#1b1f24");
+
+      const probe = labelText.append("tspan");
+      const words = ctx.label.split(" ");
+      const labelLines = [];
+      let current = "";
+      for (const word of words) {
+        const test = current ? current + " " + word : word;
+        probe.text(test);
+        if (probe.node().getComputedTextLength() > labelMaxWidth && current) {
+          labelLines.push(current);
+          current = word;
+        } else {
+          current = test;
+        }
+      }
+      if (current) labelLines.push(current);
+      probe.remove();
+
+      const labelLineHeight = 14;
+      const labelStartY = yMid + 4 - (labelLines.length - 1) * labelLineHeight / 2;
+      labelLines.forEach((line, li) => {
+        labelText.append("tspan")
+          .attr("x", -14)
+          .attr("y", labelStartY + li * labelLineHeight)
+          .text(line);
+      });
 
       // gather values for this context+behavior
       const vals = [];
