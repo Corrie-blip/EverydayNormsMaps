@@ -281,11 +281,11 @@
   <section class="maps" id="maps"></section>
 
   <section class="spread" aria-label="How the spread of country ratings shrinks under observation">
-    <h2>Hur mycket är världen oense?</h2>
+    <h2>Hur oense är världen?</h2>
     <p class="sub">
-      Varje prick är ett lands genomsnittliga bedömning. När folk är <em>ensamma</em>
-      ligger länderna långt ifrån varandra i vad som är okej. Men när <em>vänner och bekanta</em>
-     närvarar drar prickarna ihop sig. Med <em>personer med högre status</em> samlas de alla närmare den
+      Varje prick är ett lands genomsnittliga bedömning. När folk är <b>ensamma</b>
+      ligger länderna långt ifrån varandra i vad som är okej. Men när <b>vänner och bekanta</b>
+     är närvarande närmar sig prickarna varandra. Med <b>personer med högre status</b> samlas de alla närmare den
       konservativa änden. Normerna följs åt så fort en publik finns i rummet.
     </p>
     <svg class="strip" id="strip" aria-hidden="true"></svg>
@@ -331,7 +331,7 @@ window.__TOPO_DATA__ = {"type":"Topology","objects":{"countries":{"type":"Geomet
 
   // ---------- behaviour pills ----------
   const pillBox = document.getElementById("behavior-pills");
-  let activeBehavior = "Kyssa din partner"; // default — strong observer effect
+  let activeBehavior = "Kyssa sin partner"; // default — strong observer effect
   if (!BEHAVIORS.includes(activeBehavior)) activeBehavior = BEHAVIORS[0];
 
   for (const b of BEHAVIORS) {
