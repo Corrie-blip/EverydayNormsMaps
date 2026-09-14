@@ -64,25 +64,23 @@
     font-weight: 600;
   }
 
-  /* ---------- two-column app layout ---------- */
+  /* ---------- app layout: controls row above the map ---------- */
   .app-grid {
-    display: grid;
-    grid-template-columns: 240px minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    align-items: start;
-  }
-  @media (max-width: 700px) {
-    .app-grid { grid-template-columns: 1fr; }
   }
   .sidebar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 16px;
-    position: sticky;
-    top: 20px;
   }
-  @media (max-width: 880px) {
-    .sidebar { position: static; }
+  .sidebar .controls {
+    flex: 1;
+    min-width: 0;
+  }
+  @media (max-width: 700px) {
+    .sidebar { flex-direction: column; }
   }
   h1 {
     font-family: var(--serif);
